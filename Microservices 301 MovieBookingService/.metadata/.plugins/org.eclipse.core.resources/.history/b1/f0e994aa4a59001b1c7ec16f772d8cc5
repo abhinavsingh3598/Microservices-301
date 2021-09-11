@@ -1,0 +1,46 @@
+package com.mindtree.userService.services.serviceImpl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.mindtree.userService.dtos.PreferenceRequestDto;
+import com.mindtree.userService.dtos.ReviewRequestDto;
+import com.mindtree.userService.dtos.UserRequestDto;
+import com.mindtree.userService.services.UserService;
+@Service
+public class UserServiceImpl implements UserService {
+
+	@Override
+	public UserRequestDto addUserToDB(UserRequestDto userRequestDto) {
+		return null;
+	}
+
+	@Override
+	public PreferenceRequestDto addPreferenceToDB(PreferenceRequestDto preferenceRequestDto) {
+		return null;
+	}
+
+	@Override
+	public ReviewRequestDto addReviewToDB(ReviewRequestDto reviewRequestDto, int userId) {
+		return null;
+	}
+
+	@Override
+	public String assignPreferenceToUser(int userId, int preferenceId) {
+		return null;
+	}
+
+	@Override
+	public UserRequestDto updateUserDetailsToDB(UserRequestDto userRequestDto, int userId) {
+		return null;
+	}
+
+	@Override
+	public List<UserRequestDto> getAllUsersFromDB() {
+		return null;
+	}
+
+	
+
+}

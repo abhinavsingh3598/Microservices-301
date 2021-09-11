@@ -1,0 +1,30 @@
+package com.mindtree.adminService.exceptions;
+
+public class ScreenAlreadyHasShow extends ServiceException {
+
+	public ScreenAlreadyHasShow() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public ScreenAlreadyHasShow(String message) {
+		super(message);
+		// TODO Auto-generated constructor stub
+	}
+
+	public ScreenAlreadyHasShow(Throwable cause) {
+		super(cause);
+		// TODO Auto-generated constructor stub
+	}
+
+	public ScreenAlreadyHasShow(String message, Throwable cause) {
+		super(message, cause);
+		// TODO Auto-generated constructor stub
+	}
+
+	public ScreenAlreadyHasShow(String message, Throwable cause, boolean enableSuppression,
+			boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+		// TODO Auto-generated constructor stub
+	}
+
+}

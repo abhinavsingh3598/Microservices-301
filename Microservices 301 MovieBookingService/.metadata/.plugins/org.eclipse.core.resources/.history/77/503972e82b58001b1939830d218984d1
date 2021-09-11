@@ -1,0 +1,11 @@
+package com.mindtree.bookingService.services.serviceImpl;
+
+import org.springframework.stereotype.Service;
+
+import com.mindtree.bookingService.services.BookingService;
+
+@Service
+public class BookingServiceImpl implements BookingService {
+
+
+}

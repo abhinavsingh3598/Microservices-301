@@ -1,0 +1,78 @@
+package com.mindtree.searchService.services.serviceImpl;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mindtree.searchService.configs.ExternalAdminServices;
+import com.mindtree.searchService.dtos.MovieSearchResponseDto;
+import com.mindtree.searchService.exceptions.MovieDoesntExist;
+import com.mindtree.searchService.exceptions.ServiceException;
+import com.mindtree.searchService.services.MovieSearchService;
+
+@Service
+public class MovieSearchServiceImpl implements MovieSearchService {
+
+	@Autowired
+	ExternalAdminServices externalAdminService;
+	
+	List<MovieSearchResponseDto> movieList; 
+
+	@Override
+	public List<MovieSearchResponseDto> getMovieListByCity(String cityName) {
+
+		return null;
+	}
+
+	@Override
+	public List<MovieSearchResponseDto> getMovieListByLanguage(String language) throws ServiceException  {
+		
+	 movieList = getMovieList();
+	 if(movieList.isEmpty())
+	 {
+		 throw new MovieDoesntExist("No Movie Exist with this language ");
+	 }
+	 
+		return movieList.stream().filter(m -> m.getLanguage().equals(language))
+				.collect(Collectors.toList());
+	}
+
+	private List<MovieSearchResponseDto> getMovieList() {
+		List<MovieSearchResponseDto> movieList= externalAdminService.getAllMoviesFromDB().getBody().getBody();
+		return movieList;
+	}
+
+	@Override
+	public List<MovieSearchResponseDto> getMovieListByGenre(String genreType) throws ServiceException {
+		
+		movieList = getMovieList();
+		 if(movieList.isEmpty())
+		 {
+			 throw new MovieDoesntExist("No Movie Exist with this GenreType ");
+		 }
+		return movieList.stream().filter(movie->movie.getGenres().
+				stream().anyMatch(g->g.getGenreType().equals(genreType))).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<MovieSearchResponseDto> getMovieListByPreference(int preferenceId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MovieSearchResponseDto> getMovieListByUser(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean validateMovieFromDB(String movieName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

@@ -1,0 +1,9 @@
+package com.mindtree.seatService.dtos;
+
+public class SeatResponseDto {
+
+	public SeatResponseDto() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

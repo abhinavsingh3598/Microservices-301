@@ -1,0 +1,11 @@
+package com.mindtree.searchService.services.serviceImpl;
+
+import com.mindtree.searchService.services.SearchService;
+
+public class SearchServiceImpl implements SearchService {
+
+	public SearchServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -1,0 +1,9 @@
+package com.mindtree.bookingService.exceptions;
+
+public class TheaterNameDoesntExist {
+
+	public TheaterNameDoesntExist() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

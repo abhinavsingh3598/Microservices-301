@@ -1,0 +1,29 @@
+package com.mindtree.adminService.exceptions;
+
+public class CastCrewIDInvalid extends ServiceException {
+
+	public CastCrewIDInvalid() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public CastCrewIDInvalid(String message) {
+		super(message);
+		// TODO Auto-generated constructor stub
+	}
+
+	public CastCrewIDInvalid(Throwable cause) {
+		super(cause);
+		// TODO Auto-generated constructor stub
+	}
+
+	public CastCrewIDInvalid(String message, Throwable cause) {
+		super(message, cause);
+		// TODO Auto-generated constructor stub
+	}
+
+	public CastCrewIDInvalid(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+		// TODO Auto-generated constructor stub
+	}
+
+}

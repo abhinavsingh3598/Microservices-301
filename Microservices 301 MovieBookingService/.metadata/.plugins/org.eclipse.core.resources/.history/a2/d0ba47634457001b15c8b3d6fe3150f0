@@ -1,0 +1,9 @@
+package com.mindtree.adminService.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.mindtree.adminService.models.ShowTimings;
+
+public interface ShowTimingsRepository extends JpaRepository<ShowTimings, Integer> {
+
+}

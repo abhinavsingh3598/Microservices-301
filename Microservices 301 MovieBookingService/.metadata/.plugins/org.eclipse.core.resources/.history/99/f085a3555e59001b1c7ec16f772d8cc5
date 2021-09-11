@@ -1,0 +1,46 @@
+package com.mindtree.userService.utilities;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@Getter@Setter
+public class Check<T,U> {
+
+	@Autowired
+	ModelMapper modelMapper;
+	
+	T obj1;  // An object of type T 
+    U obj2;  // An object of type U 
+//  
+//	
+//	 Check(T obj1, U obj2) 
+//	    { 
+//	        this.obj1 = obj1; 
+//	        this.obj2 = obj2; 
+////		 modelMapper.map(obj1,obj2);
+//	    }
+	public  void convert (T obj1,U obj2) {
+
+		System.out.println(obj1.toString()+" "+obj2.toString());
+//		return  modelMapper.map(obj1, obj2.getClass());
+	}
+
+//	public GenreRequestDto convertEntityToDto(Genre genre) {
+
+//		return modelMapper.map(genre, GenreRequestDto.class);
+//	}
+	
+	
+//	class Test<T> 
+//	{ 
+//	    // An object of type T is declared 
+//	    T obj; 
+//	    Test(T obj) {  this.obj = obj;  }  // constructor 
+//	    public T getObject()  { return this.obj; } 
+//	} 
+}

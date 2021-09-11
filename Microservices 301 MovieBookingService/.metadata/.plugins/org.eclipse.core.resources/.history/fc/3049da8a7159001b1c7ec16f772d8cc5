@@ -1,0 +1,9 @@
+package com.mindtree.userService.configs;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(name="admin-service")
+public interface ExternalAdminService {
+
+	
+}

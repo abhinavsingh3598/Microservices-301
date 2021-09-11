@@ -1,0 +1,5 @@
+package com.mindtree.bookingService.dtos;
+
+public class PreferenceRequestDto {
+
+}

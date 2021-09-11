@@ -1,0 +1,5 @@
+package com.mindtree.searchService.services;
+
+public interface ShowScreenSearchService {
+	boolean validateShowScreenDetailsFromDB(int showScreenDetailsId);
+}

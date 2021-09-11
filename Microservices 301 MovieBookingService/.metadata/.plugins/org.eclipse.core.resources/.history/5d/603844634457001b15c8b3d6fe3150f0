@@ -1,0 +1,128 @@
+package com.mindtree.adminService.services.serviceImpl;
+
+import java.util.Optional;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mindtree.adminService.dtos.CastCrewRequestDto;
+import com.mindtree.adminService.dtos.GenreRequestDto;
+import com.mindtree.adminService.dtos.MovieRequestDto;
+import com.mindtree.adminService.dtos.ScreenRequestDto;
+import com.mindtree.adminService.dtos.TheaterRequestDto;
+import com.mindtree.adminService.exceptions.TheaterIdInvalid;
+import com.mindtree.adminService.models.Address;
+import com.mindtree.adminService.models.CastCrew;
+import com.mindtree.adminService.models.Genre;
+import com.mindtree.adminService.models.Movie;
+import com.mindtree.adminService.models.Screen;
+import com.mindtree.adminService.models.Theater;
+import com.mindtree.adminService.repositories.AddressRepository;
+import com.mindtree.adminService.repositories.CastCrewRepository;
+import com.mindtree.adminService.repositories.GenreRepository;
+import com.mindtree.adminService.repositories.MovieRepository;
+import com.mindtree.adminService.repositories.ScreenRepository;
+import com.mindtree.adminService.repositories.TheaterRepository;
+import com.mindtree.adminService.services.AdminService;
+
+@Service
+public class AdminServiceImpl implements AdminService {
+
+	@Autowired
+	GenreRepository genreRepository;
+	
+	@Autowired
+	MovieRepository movieRepository;
+	
+	@Autowired
+	CastCrewRepository castCrewRepository;
+	
+	@Autowired
+	TheaterRepository theaterRepository;
+	
+	@Autowired
+	ScreenRepository screenRepository;
+	
+	@Autowired
+	AddressRepository addressRepository;
+	
+	private ModelMapper modelMapper = new ModelMapper();
+
+	@Override
+	public GenreRequestDto addGenreToDB(GenreRequestDto genreRequestDto) {
+		Genre genre = new Genre(genreRequestDto.getGenreType());
+		return convertEntityToDto(genreRepository.save(genre));
+	}
+	
+	public Genre convertDtoToEntity(GenreRequestDto genreRequestDto) {
+
+		return modelMapper.map(genreRequestDto, Genre.class);
+	}
+
+	public GenreRequestDto convertEntityToDto(Genre genre) {
+
+		return modelMapper.map(genre, GenreRequestDto.class);
+	}
+
+	public MovieRequestDto convertEntityToDto(Movie movie) {
+
+		return modelMapper.map(movie, MovieRequestDto.class);
+	}
+	
+	public CastCrewRequestDto convertEntityToDto(CastCrew castCrew) {
+
+		return modelMapper.map(castCrew, CastCrewRequestDto.class);
+	}
+	
+	public TheaterRequestDto convertEntityToDto(Theater theater) {
+
+		return modelMapper.map(theater, TheaterRequestDto.class);
+	}
+	
+	public ScreenRequestDto convertEntityToDto(Screen screen) {
+
+		return modelMapper.map(screen, ScreenRequestDto.class);
+	}
+	
+	@Override
+	public MovieRequestDto addMovieToDB(MovieRequestDto movieRequestDto) {
+		Movie movie=new Movie(movieRequestDto.getMovieName(), movieRequestDto.getMoviePoster(), 
+				movieRequestDto.getMovieDescription(), movieRequestDto.getBudget(), movieRequestDto.getReleaseDate(), 
+				movieRequestDto.getInterestingfacts(), movieRequestDto.getLanguage());
+		
+		return convertEntityToDto(movieRepository.save(movie));
+	}
+
+	@Override
+	public CastCrewRequestDto addCastCrewToDB(CastCrewRequestDto castCrewRequestDto) {
+		CastCrew castCrew=new CastCrew(castCrewRequestDto.getCastCrewName(), castCrewRequestDto.getCastCrewImage());
+		return convertEntityToDto(castCrewRepository.save(castCrew));
+	}
+
+	@Override
+	public TheaterRequestDto addTheaterToDB(TheaterRequestDto theaterRequestDto) {
+		Theater theater=new Theater(theaterRequestDto.getTheaterName(), theaterRequestDto.getRestrictions(),
+				theaterRequestDto.getAddress());
+//		Address address=theaterRequestDto.getAddress();
+//		address.setTheater(theater);
+//		theater.getAddress().setTheater(theater);
+	
+		theater=theaterRepository.save(theater);
+		return convertEntityToDto(theater);
+	}
+
+	@Override
+	public ScreenRequestDto addScreenToDB(ScreenRequestDto screenRequestDto, int theaterId) {
+		
+		Optional<Theater> Opttheater=theaterRepository.findById(theaterId);
+		if(!Opttheater.isPresent())
+		{
+			new TheaterIdInvalid("Enter Id "+theaterId+" is invalid");
+		}
+				
+		Screen screen=new Screen(screenRequestDto.getScreenName(), screenRequestDto.getCapacity(), Opttheater.get());		
+		return convertEntityToDto(screenRepository.save(screen));
+	}
+
+}

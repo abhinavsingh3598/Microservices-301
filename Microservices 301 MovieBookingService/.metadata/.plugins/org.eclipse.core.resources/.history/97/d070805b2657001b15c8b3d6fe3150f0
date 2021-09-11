@@ -1,0 +1,18 @@
+package com.mindtree.adminService.services;
+
+import com.mindtree.adminService.dtos.CastCrewRequestDto;
+import com.mindtree.adminService.dtos.GenreRequestDto;
+import com.mindtree.adminService.dtos.MovieRequestDto;
+import com.mindtree.adminService.dtos.TheaterRequestDto;
+
+public interface AdminService {
+
+	GenreRequestDto addGenreToDB(GenreRequestDto genreRequestDto);
+
+	MovieRequestDto addMovieToDB(MovieRequestDto movieRequestDto);
+
+	CastCrewRequestDto addCastCrewToDB(CastCrewRequestDto castCrewRequestDto);
+
+	TheaterRequestDto addTheaterToDB(TheaterRequestDto theaterRequestDto);
+
+}

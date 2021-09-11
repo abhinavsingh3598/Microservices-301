@@ -1,0 +1,20 @@
+package com.mindtree.seatService.services.serviceImpl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.mindtree.seatService.dtos.MovieResponseDto;
+import com.mindtree.seatService.services.SearchService;
+
+@Service
+public class SearchServiceImpl implements SearchService {
+
+	@Override
+	public List<MovieResponseDto> getMovieListByCity(String cityName) {
+		return null;
+	}
+
+
+
+}

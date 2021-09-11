@@ -1,0 +1,98 @@
+package com.mindtree.userService.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mindtree.userService.dtos.PreferenceRequestDto;
+import com.mindtree.userService.dtos.ReviewRequestDto;
+import com.mindtree.userService.dtos.UserRequestDto;
+import com.mindtree.userService.services.UserService;
+import com.mindtree.userService.utilities.ApiResponse;
+
+@RestController
+public class UserController {
+
+	@Autowired
+	UserService userService;
+	
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE ,path = "/user")
+	public ResponseEntity<ApiResponse<UserRequestDto>> registerUser(@RequestBody UserRequestDto userRequestDto)
+	{
+		
+		ApiResponse<UserRequestDto> apiResponse = new ApiResponse<>();
+		apiResponse.setBody(userService.addUserToDB(userRequestDto));
+		apiResponse.setMessage("User Added Sucessfully !!");
+		apiResponse.setError(false);
+		apiResponse.setStatus(HttpStatus.CREATED);
+		return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE ,path = "/preference")
+	public ResponseEntity<ApiResponse<PreferenceRequestDto>> registerUser(@RequestBody PreferenceRequestDto preferenceRequestDto)
+	{
+		
+		ApiResponse<PreferenceRequestDto> apiResponse = new ApiResponse<>();
+		apiResponse.setBody(userService.addPreferenceToDB(preferenceRequestDto));
+		apiResponse.setMessage("Preference Added Sucessfully !!");
+		apiResponse.setError(false);
+		apiResponse.setStatus(HttpStatus.CREATED);
+		return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE ,path = "/review/{userId}")
+	public ResponseEntity<ApiResponse<ReviewRequestDto>> addReview(@RequestBody ReviewRequestDto reviewRequestDto,@PathVariable int userId)
+	{
+		
+		ApiResponse<ReviewRequestDto> apiResponse = new ApiResponse<>();
+		apiResponse.setBody(userService.addReviewToDB(reviewRequestDto,userId));
+		apiResponse.setMessage("Review Added Sucessfully !!");
+		apiResponse.setError(false);
+		apiResponse.setStatus(HttpStatus.CREATED);
+		return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE ,path = "/review/{userId}/{prferenceId}")
+	public ResponseEntity<ApiResponse<String>> addPreferenceForUser(@PathVariable int userId,@PathVariable int preferenceId)
+	{
+		
+		ApiResponse<String> apiResponse = new ApiResponse<>();
+		apiResponse.setBody(userService.assignPreferenceToUser(userId,preferenceId));
+		apiResponse.setMessage("Assign Preference for User Sucessfully !!");
+		apiResponse.setError(false);
+		apiResponse.setStatus(HttpStatus.CREATED);
+		return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE ,path = "/userUpdate/{userId}")
+	public ResponseEntity<ApiResponse<UserRequestDto>> updateUserDetails(@RequestBody UserRequestDto userRequestDto,@PathVariable int userId)
+	{
+		
+		ApiResponse<UserRequestDto> apiResponse = new ApiResponse<>();
+		apiResponse.setBody(userService.updateUserDetailsToDB(userRequestDto,userId));
+		apiResponse.setMessage("User Details Update Sucessfully !!");
+		apiResponse.setError(false);
+		apiResponse.setStatus(HttpStatus.ACCEPTED);
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(apiResponse);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE ,path = "/getAllUsers")
+	public ResponseEntity<ApiResponse<List<UserRequestDto>>> getAllUsers() 
+	{
+		
+		ApiResponse<List<UserRequestDto>> apiResponse = new ApiResponse<>();
+		apiResponse.setBody(userService.getAllUsersFromDB());
+		apiResponse.setMessage("All User List !!");
+		apiResponse.setError(false);
+		apiResponse.setStatus(HttpStatus.OK);
+		return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
+	}
+}

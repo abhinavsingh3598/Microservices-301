@@ -1,0 +1,26 @@
+package com.mindtree.searchService.dtos;
+
+import java.util.Set;
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+//@Setter@Getter
+@NoArgsConstructor
+@Data
+public class MovieSearchResponseDto {
+
+	private int movieId;
+	private String movieName;
+	private String moviePoster;
+	private String movieDescription;
+	private String budget;
+	private String releaseDate;
+	private String interestingfacts;
+	private String language;
+	private Set<CastCrewRequestDto> movieCastCrews;
+	private Set<GenreRequestDto> genres;
+	private Set<ShowScreenDetailsRequestDto> showScreenDetails;
+}

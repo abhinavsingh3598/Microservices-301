@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.mindtree.userService.controller&apos; to &apos;com.mindtree.userService.controllers&apos;&#x0D;&#x0A;- Original project: &apos;UserService&apos;&#x0D;&#x0A;- Original element: &apos;UserService/src/main/java/com.mindtree.userService.controller&apos;&#x0D;&#x0A;- Renamed element: &apos;UserService/src/main/java/com.mindtree.userService.controllers&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.mindtree.userService.controller&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java&lt;com.mindtree.userService.controller" name="com.mindtree.userService.controllers" qualified="false" references="true" stamp="1609908741444" textual="false" version="1.0"/>
+</session>

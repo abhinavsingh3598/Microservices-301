@@ -1,0 +1,11 @@
+package com.mindtree.searchService.services;
+
+import java.util.List;
+
+import com.mindtree.searchService.dtos.MovieResponseDto;
+
+public interface SearchService {
+
+	List<MovieResponseDto> addBookingToDB(String cityName);
+
+}

@@ -1,0 +1,48 @@
+package com.mindtree.searchService.services.serviceImpl;
+
+import java.util.List;
+
+import com.mindtree.searchService.dtos.MovieSearchResponseDto;
+import com.mindtree.searchService.services.MovieSearchService;
+
+public class MovieSearchServiceImpl implements MovieSearchService {
+
+	@Override
+	public List<MovieSearchResponseDto> getMovieListByCity(String cityName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MovieSearchResponseDto> getMovieListByLanguage(String language) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MovieSearchResponseDto> getMovieListByGenre(String genreType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MovieSearchResponseDto> getMovieListByPreference(int preferenceId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MovieSearchResponseDto> getMovieListByUser(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean validateMovieFromDB(String movieName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
+}

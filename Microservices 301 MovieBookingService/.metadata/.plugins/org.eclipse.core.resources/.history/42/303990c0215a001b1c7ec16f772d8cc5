@@ -1,0 +1,26 @@
+package com.mindtree.searchService.services;
+
+import java.util.List;
+import java.util.Set;
+
+import com.mindtree.searchService.dtos.MovieSearchResponseDto;
+import com.mindtree.searchService.exceptions.ServiceException;
+
+public interface MovieSearchService {
+
+	List<MovieSearchResponseDto> getMovieListByCity(String cityName);
+
+	Set<MovieSearchResponseDto> getMovieListByLanguage(String language) throws ServiceException;
+
+	List<MovieSearchResponseDto> getMovieListByGenre(String genreType) throws ServiceException;
+
+	List<MovieSearchResponseDto> getMovieListByPreference(int preferenceId);
+
+	List<MovieSearchResponseDto> getMovieListByUser(int userId);
+
+	Boolean validateMovieFromDB(String movieName);
+
+	Boolean validateMovieIdFromDB(int movieId);
+
+	
+}

@@ -1,0 +1,13 @@
+package com.mindtree.adminService.dtos;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class GenreRequestDto {
+	private int genreId;
+
+	private String genreType;
+
+}

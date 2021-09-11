@@ -1,0 +1,9 @@
+package com.mindtree.userService.dtos;
+
+public class ReviewRequestDto {
+
+	public ReviewRequestDto() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

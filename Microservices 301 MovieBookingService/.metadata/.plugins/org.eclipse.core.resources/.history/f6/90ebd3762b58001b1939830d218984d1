@@ -1,0 +1,29 @@
+package com.mindtree.bookingService.exceptions;
+
+public class UserIdInvalid extends ServiceException {
+
+	public UserIdInvalid() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public UserIdInvalid(String message) {
+		super(message);
+		// TODO Auto-generated constructor stub
+	}
+
+	public UserIdInvalid(Throwable cause) {
+		super(cause);
+		// TODO Auto-generated constructor stub
+	}
+
+	public UserIdInvalid(String message, Throwable cause) {
+		super(message, cause);
+		// TODO Auto-generated constructor stub
+	}
+
+	public UserIdInvalid(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -1,0 +1,17 @@
+package com.mindtree.searchService.services.serviceImpl;
+
+import com.mindtree.searchService.services.UserSearchService;
+
+public class UserSearchServiceImpl implements UserSearchService {
+
+	public UserSearchServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public boolean validateUserFromDB(int userId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

@@ -1,0 +1,12 @@
+package com.mindtree.seatService.services;
+
+import java.util.List;
+
+import com.mindtree.seatService.dtos.SeatResponseDto;
+import com.mindtree.seatService.exceptions.ServiceException;
+
+public interface SeatService {
+
+	List<SeatResponseDto> getAllBookedSeatsFromAdminService(int showScreenDetailsId) throws ServiceException;
+
+}

@@ -1,0 +1,23 @@
+package com.mindtree.adminService.dtos;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class AddressRequestDto {
+
+	private int addressId;
+	private double  latitude;
+	private double  longitude;
+	private int pincode;
+	private String city;
+	private String country;
+	private String streetName;
+	private String landmark;
+	@JsonIgnore
+	private TheaterRequestDto theater;
+
+}

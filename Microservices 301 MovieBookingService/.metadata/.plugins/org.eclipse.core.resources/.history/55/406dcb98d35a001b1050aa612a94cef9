@@ -1,0 +1,22 @@
+package com.mindtree.seatService.services.serviceImpl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.mindtree.seatService.dtos.SeatResponseDto;
+import com.mindtree.seatService.services.SeatService;
+
+@Service
+public class SeatServiceImpl implements SeatService {
+
+	@Override
+	public List<SeatResponseDto> getAllBookedSeatsFromAdminService(int showScreenDetailsId) {
+		
+		return null;
+	}
+
+
+
+
+}

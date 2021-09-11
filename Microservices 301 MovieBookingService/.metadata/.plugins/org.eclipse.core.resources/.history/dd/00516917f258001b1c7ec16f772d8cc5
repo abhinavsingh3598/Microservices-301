@@ -1,0 +1,16 @@
+package com.mindtree.searchService.services.serviceImpl;
+
+import org.springframework.stereotype.Service;
+
+import com.mindtree.searchService.services.TheaterSearchService;
+
+@Service
+public class TheaterSearchServiceImpl implements TheaterSearchService {
+
+	@Override
+	public boolean validateTheaterFromDB(String theaterName) {
+		return false;
+	}
+
+
+}

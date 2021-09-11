@@ -1,0 +1,20 @@
+1610852146904	Delete elements
+1610852154783	Delete element
+1610852220061	Copy packages
+1610898036877	Delete element
+1610898304814	Delete elements
+1610898700505	Rename type 'ExternalServices'
+1610899094836	Rename field 'searchService'
+1610899339258	Delete element
+1610899351871	Delete element
+1610899366128	Delete element
+1610901972464	Delete element
+1610907939879	Delete element
+1610908893882	Rename field 'list'
+1610912013995	Extract method 'getMovieList'
+1610993522247	Copy compilation unit
+1610998164526	Copy compilation unit
+1611081717208	Rename method 'getMovieListByUser'
+1611081835127	Rename method 'getMoviesPastBookedByUser'
+1611114292127	Copy compilation unit
+1611119457701	Copy compilation unit

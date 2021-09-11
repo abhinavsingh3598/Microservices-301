@@ -1,0 +1,9 @@
+package com.mindtree.bookingService.services;
+
+import com.mindtree.bookingService.dtos.BookingRequestDto;
+
+public interface BookingService {
+
+	BookingRequestDto addBookingToDB(BookingRequestDto bookingRequestDto);
+
+}

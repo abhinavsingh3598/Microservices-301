@@ -1,0 +1,5 @@
+package com.mindtree.adminService.dtos;
+
+public class ShowScreenSeatUpdateResponse {
+
+}

@@ -1,0 +1,6 @@
+package com.mindtree.searchService.configs;
+
+
+public interface ExternalServices {
+
+}

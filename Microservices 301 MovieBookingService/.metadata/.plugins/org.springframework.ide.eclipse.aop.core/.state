@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="AdminService"/>
+<aop-project name="UserService"/>
+<aop-project name="ZuulMovieBookingService"/>
+<aop-project name="BookingService"/>
+<aop-project name="ConfigServerMovieBookingService"/>
+<aop-project name="SeatServices"/>
+<aop-project name="EurekaServerMovieBookingService"/>
+<aop-project name="SearchService"/>
+</aop-reference-model>

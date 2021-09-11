@@ -1,0 +1,9 @@
+package com.mindtree.userService.dtos;
+
+public class PreferenceRequestDto {
+
+	public PreferenceRequestDto() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

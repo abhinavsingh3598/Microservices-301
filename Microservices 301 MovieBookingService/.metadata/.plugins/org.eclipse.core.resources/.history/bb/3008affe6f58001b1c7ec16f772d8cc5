@@ -1,0 +1,81 @@
+package com.mindtree.seatService.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mindtree.seatService.services.SearchService;
+import com.mindtree.seatService.utilities.ApiResponse;
+
+@RestController
+public class SearchController {
+	
+	@Autowired
+	SearchService searchService;
+
+	@RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE ,path = "/movie/{cityName}")
+	public ResponseEntity<ApiResponse> getMoviesByCityName(@PathVariable String cityName )
+	{
+		
+		ApiResponse apiResponse = new ApiResponse();
+		apiResponse.setBody(searchService.getMovieListByCity(cityName));
+		apiResponse.setMessage("Movies Searched Sucessfully !!");
+		apiResponse.setError(false);
+		apiResponse.setStatus(HttpStatus.FOUND);
+		return ResponseEntity.status(HttpStatus.FOUND).body(apiResponse);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE ,path = "/movie/{language}")
+	public ResponseEntity<ApiResponse> getMoviesByLanguage(@PathVariable String language )
+	{
+		
+		ApiResponse apiResponse = new ApiResponse();
+		apiResponse.setBody(searchService.getMovieListByLanguage(language));
+		apiResponse.setMessage("Movies Searched Sucessfully !!");
+		apiResponse.setError(false);
+		apiResponse.setStatus(HttpStatus.FOUND);
+		return ResponseEntity.status(HttpStatus.FOUND).body(apiResponse);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE ,path = "/movie/{genre}")
+	public ResponseEntity<ApiResponse> getMoviesByGenre(@PathVariable String genreType )
+	{
+		
+		ApiResponse apiResponse = new ApiResponse();
+		apiResponse.setBody(searchService.getMovieListByGenre(genreType));
+		apiResponse.setMessage("Movies Searched Sucessfully !!");
+		apiResponse.setError(false);
+		apiResponse.setStatus(HttpStatus.FOUND);
+		return ResponseEntity.status(HttpStatus.FOUND).body(apiResponse);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE ,path = "/movie/{preferenceId}")
+	public ResponseEntity<ApiResponse> getMoviesByPreference(@PathVariable int preferenceId )
+	{
+		
+		ApiResponse apiResponse = new ApiResponse();
+		apiResponse.setBody(searchService.getMovieListByPreference(preferenceId));
+		apiResponse.setMessage("Movies Searched Sucessfully !!");
+		apiResponse.setError(false);
+		apiResponse.setStatus(HttpStatus.FOUND);
+		return ResponseEntity.status(HttpStatus.FOUND).body(apiResponse);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE ,path = "/movie/{userId}")
+	public ResponseEntity<ApiResponse> getMoviesByGenre(@PathVariable int userId )
+	{
+		
+		ApiResponse apiResponse = new ApiResponse();
+		apiResponse.setBody(searchService.getMovieListByUser(userId));
+		apiResponse.setMessage("Movies Searched Sucessfully !!");
+		apiResponse.setError(false);
+		apiResponse.setStatus(HttpStatus.FOUND);
+		return ResponseEntity.status(HttpStatus.FOUND).body(apiResponse);
+	}
+
+}

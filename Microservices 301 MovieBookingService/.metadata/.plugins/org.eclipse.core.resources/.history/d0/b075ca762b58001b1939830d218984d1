@@ -1,0 +1,11 @@
+package com.mindtree.userService.services.serviceImpl;
+
+import org.springframework.stereotype.Service;
+
+import com.mindtree.userService.services.UserService;
+@Service
+public class UserServiceImpl implements UserService {
+
+	
+
+}

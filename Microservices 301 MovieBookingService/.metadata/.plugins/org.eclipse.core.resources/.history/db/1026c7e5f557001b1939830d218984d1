@@ -1,0 +1,24 @@
+package com.mindtree.adminService.dtos;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class ShowScreenDetailsResponseDto {
+
+
+	private int showScreenDetailId;
+
+	private ShowTimingsRequestDto show;
+
+	private ScreenRequestDto screen;
+
+	private MovieRequestDto movie;
+
+	private TheaterRequestDto theater;
+
+	private int totalSeatsPresent;
+	
+	private String[] bookedSeats;
+}

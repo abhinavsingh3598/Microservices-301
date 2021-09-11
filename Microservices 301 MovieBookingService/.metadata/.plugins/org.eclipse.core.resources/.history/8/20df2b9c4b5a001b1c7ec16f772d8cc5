@@ -1,0 +1,30 @@
+package com.mindtree.bookingService.exceptions;
+
+public class MovieNameDoesntExist extends ServiceException {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public MovieNameDoesntExist() {
+	}
+
+	public MovieNameDoesntExist(String message) {
+		super(message);
+	}
+
+	public MovieNameDoesntExist(Throwable cause) {
+		super(cause);
+	}
+
+	public MovieNameDoesntExist(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public MovieNameDoesntExist(String message, Throwable cause, boolean enableSuppression,
+			boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+	}
+
+}

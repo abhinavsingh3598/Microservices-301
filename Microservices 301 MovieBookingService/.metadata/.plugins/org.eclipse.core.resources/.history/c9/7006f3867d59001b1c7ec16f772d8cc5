@@ -1,0 +1,25 @@
+package com.mindtree.userService.services;
+
+import java.util.List;
+
+import com.mindtree.userService.dtos.PreferenceRequestDto;
+import com.mindtree.userService.dtos.ReviewRequestDto;
+import com.mindtree.userService.dtos.UserRequestDto;
+import com.mindtree.userService.dtos.UserResponseDto;
+import com.mindtree.userService.exceptions.ServiceException;
+
+public interface UserService {
+
+	UserResponseDto addUserToDB(UserRequestDto userRequestDto);
+
+	PreferenceRequestDto addPreferenceToDB(PreferenceRequestDto preferenceRequestDto) throws ServiceException;
+
+	ReviewRequestDto addReviewToDB(ReviewRequestDto reviewRequestDto, int userId);
+
+	String assignPreferenceToUser(int userId, int preferenceId);
+
+	UserResponseDto updateUserDetailsToDB(UserRequestDto userRequestDto, int userId) throws ServiceException;
+
+	List<UserResponseDto> getAllUsersFromDB();
+
+}

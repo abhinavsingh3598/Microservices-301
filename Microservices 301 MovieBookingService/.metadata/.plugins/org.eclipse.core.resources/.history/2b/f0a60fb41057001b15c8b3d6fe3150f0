@@ -1,0 +1,34 @@
+package com.mindtree.adminService.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mindtree.adminService.dtos.GenreRequestDto;
+import com.mindtree.adminService.services.AdminService;
+import com.mindtree.adminService.utilities.ApiResponse;
+
+@RestController
+public class AdminController {
+
+	@Autowired
+	AdminService adminService; 
+	
+	@PostMapping("/genre")
+	public ResponseEntity<ApiResponse> addGenre(@RequestBody GenreRequestDto genreRequestDto)
+	{
+		
+		ApiResponse apiResponse = new ApiResponse();
+		apiResponse.setBody(adminService.addGenreToDB(genreRequestDto));
+		apiResponse.setMessage("Genre Added Sucessfully !!");
+		apiResponse.setError(false);
+		apiResponse.setStatus(HttpStatus.CREATED);
+		return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
+	}
+	
+	
+	
+}

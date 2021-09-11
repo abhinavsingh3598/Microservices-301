@@ -1,0 +1,16 @@
+package com.mindtree.searchService.services;
+
+import java.util.List;
+
+import com.mindtree.searchService.dtos.MovieSearchResponseDto;
+
+public interface SearchService {
+
+	
+
+
+	
+
+	
+
+}

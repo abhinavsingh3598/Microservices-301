@@ -1,0 +1,5 @@
+package com.mindtree.adminService.services;
+
+public interface AdminService {
+
+}

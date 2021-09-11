@@ -1,0 +1,28 @@
+package com.mindtree.adminService.dtos;
+
+import com.mindtree.adminService.models.Movie;
+import com.mindtree.adminService.models.Screen;
+import com.mindtree.adminService.models.ShowTimings;
+import com.mindtree.adminService.models.Theater;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class ShowScreenDetailsRequestDto {
+
+	private int showScreenDetailId;
+
+	private ShowTimings show;
+
+	private Screen screen;
+
+	private Movie movie;
+
+	private Theater theater;
+
+	private int totalSeatsPresent;
+	private String[] bookedSeats;
+
+}

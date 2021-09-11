@@ -1,0 +1,19 @@
+package com.mindtree.seatService.services;
+
+import java.util.List;
+
+import com.mindtree.seatService.dtos.MovieResponseDto;
+
+public interface SearchService {
+
+	List<MovieResponseDto> getMovieListByCity(String cityName);
+
+	List<MovieResponseDto> getMovieListByLanguage(String language);
+
+	List<MovieResponseDto> getMovieListByGenre(String genreType);
+
+	List<MovieResponseDto> getMovieListByPreference(int preferenceId);
+
+	List<MovieResponseDto> getMovieListByUser(int userId);
+
+}

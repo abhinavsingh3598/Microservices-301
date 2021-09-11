@@ -1,0 +1,9 @@
+package com.mindtree.adminService.services;
+
+import com.mindtree.adminService.dtos.GenreRequestDto;
+
+public interface AdminService {
+
+	String addGenreToDB(GenreRequestDto genreRequestDto);
+
+}

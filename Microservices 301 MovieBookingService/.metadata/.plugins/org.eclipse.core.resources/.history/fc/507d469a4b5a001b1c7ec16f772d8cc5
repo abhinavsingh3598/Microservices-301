@@ -1,0 +1,32 @@
+package com.mindtree.bookingService.exceptions;
+
+public class TheaterNameDoesntExist extends ServiceException{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public TheaterNameDoesntExist() {
+		super();
+	}
+
+	public TheaterNameDoesntExist(String message, Throwable cause, boolean enableSuppression,
+			boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+	}
+
+	public TheaterNameDoesntExist(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public TheaterNameDoesntExist(String message) {
+		super(message);
+	}
+
+	public TheaterNameDoesntExist(Throwable cause) {
+		super(cause);
+	}
+
+
+}

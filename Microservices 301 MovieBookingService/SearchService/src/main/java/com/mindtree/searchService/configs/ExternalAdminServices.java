@@ -1,0 +1,29 @@
+package com.mindtree.searchService.configs;
+
+import java.util.List;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.mindtree.searchService.dtos.MovieSearchResponseDto;
+import com.mindtree.searchService.dtos.ShowScreenDetailsResponseDto;
+import com.mindtree.searchService.dtos.TheaterRequestDto;
+import com.mindtree.searchService.utilities.ApiResponse;
+
+@FeignClient(name="admin-service")
+public interface ExternalAdminServices {
+
+	@RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE ,path = "/getAllMovies")
+	ResponseEntity<ApiResponse<List<MovieSearchResponseDto>>>  getAllMoviesFromDB();
+
+	@RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE ,path = "/getAllTheaters")
+	ResponseEntity<ApiResponse<List<TheaterRequestDto>>> getAllTheatersFromDB();
+
+	@RequestMapping(method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE ,path = "/getShowScreenDetails")
+	ResponseEntity<ApiResponse<List<ShowScreenDetailsResponseDto>>> getShowScreenDetailsFromDB();
+	
+	
+}

@@ -1,0 +1,60 @@
+package com.mindtree.searchService.services.serviceImpl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.mindtree.searchService.dtos.MovieResponseDto;
+import com.mindtree.searchService.services.SearchService;
+
+@Service
+public class SearchServiceImpl implements SearchService {
+
+	@Override
+	public List<MovieResponseDto> getMovieListByCity(String cityName) {
+		return null;
+	}
+
+	@Override
+	public List<MovieResponseDto> getMovieListByLanguage(String language) {
+		return null;
+	}
+
+	@Override
+	public List<MovieResponseDto> getMovieListByGenre(String genreType) {
+		return null;
+	}
+
+	@Override
+	public List<MovieResponseDto> getMovieListByPreference(int preferenceId) {
+		return null;
+	}
+
+	@Override
+	public List<MovieResponseDto> getMovieListByUser(int userId) {
+		return null;
+	}
+
+	@Override
+	public boolean validateMovieFromDB(String movieName) {
+		return false;
+	}
+
+	@Override
+	public boolean validateTheaterFromDB(String theaterName) {
+		return false;
+	}
+
+	@Override
+	public boolean validateUserFromDB(int userId) {
+		return false;
+	}
+
+	@Override
+	public boolean validateShowScreenDetailsFromDB(int showScreenDetailsId) {
+		return false;
+	}
+
+
+
+}

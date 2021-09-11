@@ -1,0 +1,27 @@
+package com.mindtree.searchService.services;
+
+import java.util.List;
+
+import com.mindtree.searchService.dtos.MovieResponseDto;
+
+public interface SearchService {
+
+	List<MovieResponseDto> getMovieListByCity(String cityName);
+
+	List<MovieResponseDto> getMovieListByLanguage(String language);
+
+	List<MovieResponseDto> getMovieListByGenre(String genreType);
+
+	List<MovieResponseDto> getMovieListByPreference(int preferenceId);
+
+	List<MovieResponseDto> getMovieListByUser(int userId);
+
+	boolean validateMovieFromDB(String movieName);
+
+	boolean validateTheaterFromDB(String theaterName);
+
+	boolean validateUserFromDB(int userId);
+
+	boolean validateShowScreenDetailsFromDB(int showScreenDetailsId);
+
+}

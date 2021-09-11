@@ -1,0 +1,18 @@
+package com.mindtree.seatService.dtos;
+
+import java.util.Set;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@Getter@Setter
+public class SeatResponseDto {
+
+private boolean seatAvailable;
+private Set<String> bookedSeats;
+
+
+
+}

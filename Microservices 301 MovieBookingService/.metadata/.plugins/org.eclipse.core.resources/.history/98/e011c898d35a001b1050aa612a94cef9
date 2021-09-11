@@ -1,0 +1,13 @@
+package com.mindtree.seatService.services;
+
+import java.util.List;
+
+import com.mindtree.seatService.dtos.SeatResponseDto;
+
+public interface SeatService {
+
+	List<SeatResponseDto> getAllBookedSeatsFromAdminService(int showScreenDetailsId);
+
+
+
+}

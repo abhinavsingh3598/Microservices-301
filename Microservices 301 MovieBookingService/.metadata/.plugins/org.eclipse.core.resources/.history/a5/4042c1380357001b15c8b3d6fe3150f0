@@ -1,0 +1,20 @@
+package com.mindtree.adminService.controllers;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mindtree.adminService.dtos.GenreRequestDto;
+
+@RestController
+public class AdminController {
+
+	@PostMapping("/genre")
+	public String addGenre(@RequestBody GenreRequestDto genreRequestDto)
+	{
+		return null;
+	}
+	
+	
+	
+}

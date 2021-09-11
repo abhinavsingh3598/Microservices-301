@@ -1,0 +1,56 @@
+package com.mindtree.searchService.services.serviceImpl;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mindtree.searchService.configs.ExternalAdminServices;
+import com.mindtree.searchService.dtos.MovieSearchResponseDto;
+import com.mindtree.searchService.services.MovieSearchService;
+
+@Service
+public class MovieSearchServiceImpl implements MovieSearchService {
+
+	@Autowired
+	ExternalAdminServices externalAdminService;
+
+	@Override
+	public List<MovieSearchResponseDto> getMovieListByCity(String cityName) {
+
+		return null;
+	}
+
+	@Override
+	public List<MovieSearchResponseDto> getMovieListByLanguage(String language) {
+		List<MovieSearchResponseDto> list= externalAdminService.getAllMoviesFromDB().getBody().getBody();
+		return list.stream().filter(m -> m.getLanguage().equals(language))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<MovieSearchResponseDto> getMovieListByGenre(String genreType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MovieSearchResponseDto> getMovieListByPreference(int preferenceId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<MovieSearchResponseDto> getMovieListByUser(int userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean validateMovieFromDB(String movieName) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

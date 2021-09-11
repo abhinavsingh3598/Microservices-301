@@ -1,0 +1,17 @@
+package com.mindtree.userService.utilities;
+
+import org.modelmapper.ModelMapper;
+
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+
+public class Check<T,U> {
+
+	ModelMapper modelMapper=new ModelMapper();
+
+//	public  U convert1 (T obj1,U obj2) {
+//		return  (U) modelMapper.map(obj1,obj2.getClass());
+//	}
+
+}

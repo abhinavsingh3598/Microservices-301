@@ -1,0 +1,5 @@
+package com.mindtree.userService.services;
+
+public interface UserService {
+
+}

@@ -1,0 +1,9 @@
+package com.mindtree.adminService.dtos;
+
+public class AddressRequestDto {
+
+	public AddressRequestDto() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

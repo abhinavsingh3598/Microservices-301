@@ -1,0 +1,41 @@
+package com.mindtree.bookingService.services.serviceImpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mindtree.bookingService.configs.ExternalSearchService;
+import com.mindtree.bookingService.dtos.BookingRequestDto;
+import com.mindtree.bookingService.exceptions.ServiceException;
+import com.mindtree.bookingService.repositories.BookingRepository;
+import com.mindtree.bookingService.services.BookingService;
+
+@Service
+public class BookingServiceImpl implements BookingService {
+
+	@Autowired
+	BookingRepository bookingRepository;
+	
+	@Autowired
+	ExternalSearchService externalSearchService;
+	
+	@Override
+	public BookingRequestDto addBookingToDB(BookingRequestDto bookingRequestDto) throws ServiceException {
+		return null;
+	}
+
+	@Override
+	public String deleteBookingFromDB(int bookingId) throws ServiceException {
+		return null;
+	}
+
+	@Override
+	public List<BookingRequestDto> getAllBookingFromDB() {
+		return null;
+	}
+
+	
+
+
+}

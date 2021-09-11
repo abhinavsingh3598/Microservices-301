@@ -1,0 +1,17 @@
+package com.mindtree.bookingService.services.serviceImpl;
+
+import org.springframework.stereotype.Service;
+
+import com.mindtree.bookingService.dtos.BookingRequestDto;
+import com.mindtree.bookingService.services.BookingService;
+
+@Service
+public class BookingServiceImpl implements BookingService {
+
+	@Override
+	public BookingRequestDto addBookingToDB(BookingRequestDto bookingRequestDto) {
+		return null;
+	}
+
+
+}

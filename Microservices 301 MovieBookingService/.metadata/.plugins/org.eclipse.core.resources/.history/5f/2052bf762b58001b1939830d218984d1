@@ -1,0 +1,9 @@
+package com.mindtree.bookingService.dtos;
+
+public class BookingRequestDto {
+
+	public BookingRequestDto() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

@@ -1,0 +1,14 @@
+package com.mindtree.adminService.dtos;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class ShowTimingsRequestDto {
+
+	private int showId;
+	
+	private String showTimings;
+	
+}

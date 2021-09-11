@@ -1,0 +1,32 @@
+package com.mindtree.seatService.services.serviceImpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mindtree.seatService.configs.ExternalAdminServices;
+import com.mindtree.seatService.dtos.SeatResponseDto;
+import com.mindtree.seatService.dtos.ShowScreenSeatUpdatedRequestDto;
+import com.mindtree.seatService.exceptions.ServiceException;
+import com.mindtree.seatService.services.SeatService;
+
+@Service
+public class SeatServiceImpl implements SeatService {
+
+	@Autowired
+	ExternalAdminServices externalAdminService;
+
+	@Override
+	public SeatResponseDto getAllBookedSeatsFromAdminService(int showScreenDetailsId) throws ServiceException {
+
+		ShowScreenSeatUpdatedRequestDto showScreen = externalAdminService
+				.getBookedSeatInfoShowScreen(showScreenDetailsId).getBody().getBody();
+
+		SeatResponseDto seatResponseDto=new SeatResponseDto();
+		seatResponseDto.setBookedSeats(showScreen.getBookedSeats());
+		seatResponseDto.setSeatAvailable(showScreen.getBookedSeats().size()<showScreen.getScreenCapacity());
+		return seatResponseDto;
+	}
+
+}

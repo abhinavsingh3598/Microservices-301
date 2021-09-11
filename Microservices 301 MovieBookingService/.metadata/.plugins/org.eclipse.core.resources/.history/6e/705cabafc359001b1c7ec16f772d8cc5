@@ -1,0 +1,84 @@
+package com.mindtree.bookingService.services.serviceImpl;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mindtree.bookingService.configs.ExternalSearchService;
+import com.mindtree.bookingService.dtos.BookingRequestDto;
+import com.mindtree.bookingService.exceptions.MovieNameDoesntExist;
+import com.mindtree.bookingService.exceptions.ServiceException;
+import com.mindtree.bookingService.exceptions.ShowScreenIDInvalid;
+import com.mindtree.bookingService.exceptions.TheaterNameDoesntExist;
+import com.mindtree.bookingService.exceptions.UserIdInvalid;
+import com.mindtree.bookingService.models.Booking;
+import com.mindtree.bookingService.repositories.BookingRepository;
+import com.mindtree.bookingService.services.BookingService;
+import com.mindtree.userService.exceptions.PreferenceIDInvalid;
+import com.mindtree.userService.models.Preference;
+
+@Service
+public class BookingServiceImpl implements BookingService {
+
+	@Autowired
+	BookingRepository bookingRepository;
+
+	@Autowired
+	ExternalSearchService externalSearchService;
+
+	ModelMapper modelMapper = new ModelMapper();
+
+	@Override
+	public BookingRequestDto addBookingToDB(BookingRequestDto bookingRequestDto) throws ServiceException {
+
+		if (!externalSearchService.validateUserFromDB(bookingRequestDto.getUserId()).getBody().getBody()) {
+			throw new UserIdInvalid("Enter the Valid UserId");
+		}
+		if (!externalSearchService.validateMovieFromDB(bookingRequestDto.getMovieName()).getBody().getBody()) {
+			throw new MovieNameDoesntExist("Movie Name Dooesn't Exist");
+		}
+		if (!externalSearchService.validateTheaterFromDB(bookingRequestDto.getTheatreName()).getBody().getBody()) {
+			throw new TheaterNameDoesntExist("Theater Name Doesnt Exist");
+		}
+
+		if (!externalSearchService.validateShowScreenDetailsFromDB(bookingRequestDto.getShow_screenId()).getBody()
+				.getBody()) {
+			throw new ShowScreenIDInvalid("Show Screen Id is not valid");
+		}
+
+		Booking booking = new Booking();
+		booking.setUserId(bookingRequestDto.getUserId());
+		booking.setBookingType(bookingRequestDto.getBookingType());
+		booking.setBookingDate(bookingRequestDto.getBookingDate());
+		booking.setModeOfPayment(bookingRequestDto.getModeOfPayment());
+		booking.setAmount(bookingRequestDto.getAmount());
+		booking.setTheatreName(bookingRequestDto.getTheatreName());
+		booking.setShow_screenId(bookingRequestDto.getShow_screenId());
+		booking.setBookedSeats(bookingRequestDto.getBookedSeats());
+
+		return convert(bookingRepository.save(booking), new BookingRequestDto());
+	}
+
+	@Override
+	public String deleteBookingFromDB(int bookingId) throws ServiceException {
+		Preference preference = preferenceRepository.findById(preferenceId)
+				.orElseThrow(() -> new PreferenceIDInvalid("Preference Id is not valid"));
+
+		Booking booking=bookingRepository.findById(bookingId).orElseThrow(()-> new Bookin )
+		return null;
+	}
+
+	@Override
+	public List<BookingRequestDto> getAllBookingFromDB() {
+		return bookingRepository.findAll().stream().map(booking -> convert(booking, new BookingRequestDto()))
+				.collect(Collectors.toList());
+	}
+
+	public <U, T> U convert(T obj1, U obj2) {
+		return (U) modelMapper.map(obj1, obj2.getClass());
+	}
+
+}

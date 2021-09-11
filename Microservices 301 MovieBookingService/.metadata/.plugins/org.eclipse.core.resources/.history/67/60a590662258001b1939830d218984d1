@@ -1,0 +1,15 @@
+package com.mindtree.userService.exceptions;
+
+public class ServiceException extends org.hibernate.service.spi.ServiceException {
+
+	public ServiceException(String message) {
+		super(message);
+		// TODO Auto-generated constructor stub
+	}
+
+	public ServiceException(String message, Throwable root) {
+		super(message, root);
+		// TODO Auto-generated constructor stub
+	}
+
+}

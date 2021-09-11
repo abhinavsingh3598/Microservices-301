@@ -1,0 +1,308 @@
+package com.mindtree.adminService.services.serviceImpl;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mindtree.adminService.dtos.CastCrewRequestDto;
+import com.mindtree.adminService.dtos.GenreRequestDto;
+import com.mindtree.adminService.dtos.ListRequestBody;
+import com.mindtree.adminService.dtos.MovieRequestDto;
+import com.mindtree.adminService.dtos.MovieSearchResponseDto;
+import com.mindtree.adminService.dtos.ScreenRequestDto;
+import com.mindtree.adminService.dtos.ScreenResponseDto;
+import com.mindtree.adminService.dtos.ShowScreenDetailsRequestDto;
+import com.mindtree.adminService.dtos.ShowScreenDetailsResponseDto;
+import com.mindtree.adminService.dtos.ShowScreenSeatUpdatedRequestDto;
+import com.mindtree.adminService.dtos.ShowTimingsRequestDto;
+import com.mindtree.adminService.dtos.TheaterRequestDto;
+import com.mindtree.adminService.exceptions.CastCrewIDInvalid;
+import com.mindtree.adminService.exceptions.GenreIDInvalid;
+import com.mindtree.adminService.exceptions.InvalidSeatNumber;
+import com.mindtree.adminService.exceptions.MovieIDInvalid;
+import com.mindtree.adminService.exceptions.ScreenAlreadyHasShow;
+import com.mindtree.adminService.exceptions.ScreenIDInvalid;
+import com.mindtree.adminService.exceptions.ScreenNotPresentInEnteredTheater;
+import com.mindtree.adminService.exceptions.SeatAlreadyBooked;
+import com.mindtree.adminService.exceptions.ServiceException;
+import com.mindtree.adminService.exceptions.ShowIDInvalid;
+import com.mindtree.adminService.exceptions.ShowScreenDetailsIdInvalid;
+import com.mindtree.adminService.exceptions.TheaterIdInvalid;
+import com.mindtree.adminService.models.Address;
+import com.mindtree.adminService.models.CastCrew;
+import com.mindtree.adminService.models.Genre;
+import com.mindtree.adminService.models.Movie;
+import com.mindtree.adminService.models.Screen;
+import com.mindtree.adminService.models.ShowScreenDetails;
+import com.mindtree.adminService.models.ShowTimings;
+import com.mindtree.adminService.models.Theater;
+import com.mindtree.adminService.repositories.AddressRepository;
+import com.mindtree.adminService.repositories.CastCrewRepository;
+import com.mindtree.adminService.repositories.GenreRepository;
+import com.mindtree.adminService.repositories.MovieRepository;
+import com.mindtree.adminService.repositories.ScreenRepository;
+import com.mindtree.adminService.repositories.ShowScreenDetailsRepository;
+import com.mindtree.adminService.repositories.ShowTimingsRepository;
+import com.mindtree.adminService.repositories.TheaterRepository;
+import com.mindtree.adminService.services.AdminService;
+
+@Service
+public class AdminServiceImpl implements AdminService {
+
+	@Autowired
+	GenreRepository genreRepository;
+
+	@Autowired
+	MovieRepository movieRepository;
+
+	@Autowired
+	CastCrewRepository castCrewRepository;
+
+	@Autowired
+	TheaterRepository theaterRepository;
+
+	@Autowired
+	ScreenRepository screenRepository;
+
+	@Autowired
+	AddressRepository addressRepository;
+
+	@Autowired
+	ShowTimingsRepository showTimingsRepository;
+
+	@Autowired
+	ShowScreenDetailsRepository showScreenDetailsRepository;
+
+	private ModelMapper modelMapper = new ModelMapper();
+
+	@Override
+	public GenreRequestDto addGenreToDB(GenreRequestDto genreRequestDto) {
+		Genre genre = new Genre(genreRequestDto.getGenreType());
+		return convert(genreRepository.save(genre), new GenreRequestDto());
+	}
+
+	@Override
+	public MovieRequestDto addMovieToDB(MovieRequestDto movieRequestDto) {
+		Movie movie = new Movie(movieRequestDto.getMovieName(), movieRequestDto.getMoviePoster(),
+				movieRequestDto.getMovieDescription(), movieRequestDto.getBudget(), movieRequestDto.getReleaseDate(),
+				movieRequestDto.getInterestingfacts(), movieRequestDto.getLanguage());
+
+		return convert(movieRepository.save(movie), new MovieRequestDto());
+	}
+
+	@Override
+	public CastCrewRequestDto addCastCrewToDB(CastCrewRequestDto castCrewRequestDto) {
+		CastCrew castCrew = new CastCrew(castCrewRequestDto.getCastCrewName(), castCrewRequestDto.getCastCrewImage());
+		return convert(castCrewRepository.save(castCrew), new CastCrewRequestDto());
+	}
+
+	@Override
+	public TheaterRequestDto addTheaterToDB(TheaterRequestDto theaterRequestDto) {
+		Theater theater = new Theater(theaterRequestDto.getTheaterName(), theaterRequestDto.getRestrictions(),
+				convert(theaterRequestDto.getAddress(), new Address()));
+		return convert(theaterRepository.save(theater), new TheaterRequestDto());
+	}
+
+	@Override
+	public ScreenResponseDto addScreenToDB(ScreenRequestDto screenRequestDto, int theaterId) throws ServiceException {
+
+		Optional<Theater> Opttheater = theaterRepository.findById(theaterId);
+		if (!Opttheater.isPresent()) {
+			throw new TheaterIdInvalid("Enter Id " + theaterId + " is invalid");
+		}
+
+		Screen screen = new Screen(screenRequestDto.getScreenName(), screenRequestDto.getCapacity(), Opttheater.get());
+		return convert(screenRepository.save(screen), new ScreenResponseDto());
+	}
+
+	@Override
+	public ShowScreenDetailsResponseDto addShowScreenDetailsDB(ShowScreenDetailsRequestDto showScreenDetailsRequestDto)
+			throws ServiceException {
+		Optional<Theater> Opttheater = theaterRepository.findById(showScreenDetailsRequestDto.getTheaterId());
+		if (!Opttheater.isPresent()) {
+			throw new TheaterIdInvalid(
+					"Enter Theater Id " + showScreenDetailsRequestDto.getTheaterId() + " is invalid");
+		}
+		Optional<Screen> OptScreen = screenRepository.findById(showScreenDetailsRequestDto.getScreenId());
+		if (!OptScreen.isPresent()) {
+			throw new ScreenIDInvalid("Enter Screen Id " + showScreenDetailsRequestDto.getScreenId() + " is invalid");
+		}
+
+		Optional<Movie> OptMovie = movieRepository.findById(showScreenDetailsRequestDto.getMovieId());
+		if (!OptMovie.isPresent()) {
+			throw new MovieIDInvalid("Enter Movie Id " + showScreenDetailsRequestDto.getMovieId() + " is invalid");
+		}
+
+		Optional<ShowTimings> OptShow = showTimingsRepository.findById(showScreenDetailsRequestDto.getShowId());
+		if (!OptShow.isPresent()) {
+			throw new ShowIDInvalid("Enter Show Timings Id " + showScreenDetailsRequestDto.getShowId() + " is invalid");
+		}
+
+		if (Opttheater.get().getScreens().stream()
+				.noneMatch(s -> s.getScreenId() == showScreenDetailsRequestDto.getScreenId())) {
+			throw new ScreenNotPresentInEnteredTheater("Enter ScreenId is not Present for this TheaterId ");
+		}
+
+		if (validateScreenShowTimings(showScreenDetailsRequestDto)) {
+			throw new ScreenAlreadyHasShow("screen is already occupied by another showId for this theater");
+		}
+
+		ShowScreenDetails showScreenDetails = new ShowScreenDetails();
+
+		showScreenDetails.setBookedSeats(new HashSet<String>(showScreenDetails.getTotalSeatsPresent()));
+		showScreenDetails.setTotalSeatsPresent(OptScreen.get().getCapacity());
+		showScreenDetails.setTheater(Opttheater.get());
+		showScreenDetails.setMovie(OptMovie.get());
+		showScreenDetails.setShow(OptShow.get());
+		showScreenDetails.setScreen(OptScreen.get());
+		return convert(showScreenDetailsRepository.save(showScreenDetails), new ShowScreenDetailsResponseDto());
+	}
+
+	private boolean validateScreenShowTimings(ShowScreenDetailsRequestDto showScreenDetailsRequestDto) {
+		return showScreenDetailsRepository.findAll().stream()
+				.anyMatch(ss -> ss.getScreen().getScreenId() == showScreenDetailsRequestDto.getScreenId()
+						&& ss.getShow().getShowId() == showScreenDetailsRequestDto.getShowId()
+						&& ss.getTheater().getTheaterId() == showScreenDetailsRequestDto.getTheaterId());
+	}
+
+	@Override
+	public ShowTimingsRequestDto addShowTimingsDB(ShowTimingsRequestDto showTimingsRequestDto) {
+		ShowTimings showTimings = new ShowTimings();
+		showTimings.setShowTimings(showTimingsRequestDto.getShowTimings());
+		return convert(showTimingsRepository.save(showTimings), new ShowTimingsRequestDto());
+	}
+
+	@Override
+	public String addCastCrewToMovie(ListRequestBody castCrewIds, int movieId) throws ServiceException {
+		Optional<Movie> OptMovie = movieRepository.findById(movieId);
+		if (!OptMovie.isPresent()) {
+			throw new MovieIDInvalid("Enter Movie Id " + movieId + " is invalid");
+		}
+		Movie movie = OptMovie.get();
+		Set<CastCrew> castCrews = new HashSet<>();
+		for (int id : castCrewIds.getIds()) {
+			Optional<CastCrew> OptCastCrew = castCrewRepository.findById(id);
+			if (!OptCastCrew.isPresent()) {
+				throw new CastCrewIDInvalid("Entered CastCrewId is " + id + " is invalid");
+			}
+			CastCrew castCrew = OptCastCrew.get();
+			castCrews.add(castCrew);
+			castCrewRepository.saveAndFlush(castCrew);
+			castCrew.getMovie().add(movie);
+		}
+
+		movie.getMovieCastCrews().addAll(castCrews);
+
+		movieRepository.saveAndFlush(movie);
+
+		return "Assigned Movie to CastCrews !!!";
+	}
+
+	@Override
+	public String addGenreToMovieToDB(ListRequestBody genreIds, int movieId) throws ServiceException {
+		Optional<Movie> OptMovie = movieRepository.findById(movieId);
+		if (!OptMovie.isPresent()) {
+			throw new MovieIDInvalid("Enter Movie Id " + movieId + " is invalid");
+		}
+		Movie movie = OptMovie.get();
+		Set<Genre> genres = new HashSet<>();
+		for (int id : genreIds.getIds()) {
+			Optional<Genre> OptGenre = genreRepository.findById(id);
+			if (!OptGenre.isPresent()) {
+				throw new GenreIDInvalid("Entered GenreId is " + id + " is invalid");
+			}
+			Genre genre = OptGenre.get();
+			genres.add(genre);
+			genreRepository.saveAndFlush(genre);
+			genre.getGenreMovie().add(movie);
+		}
+
+		movie.getGenres().addAll(genres);
+
+		movieRepository.saveAndFlush(movie);
+
+		return "Assigned Movie to Genres !!!";
+	}
+
+	@Override
+	public String updateShowScreenDetailsSeats(ShowScreenSeatUpdatedRequestDto screenSeatUpdatedRequestDto)
+			throws ServiceException {
+
+		Optional<ShowScreenDetails> OptScreen = showScreenDetailsRepository
+				.findById(screenSeatUpdatedRequestDto.getShowScreenDetailId());
+		if (!OptScreen.isPresent()) {
+			throw new ShowScreenDetailsIdInvalid("Enter ShowScreenDetails Id "
+					+ screenSeatUpdatedRequestDto.getShowScreenDetailId() + " is invalid");
+		}
+		ShowScreenDetails showScreenDetails = OptScreen.get();
+
+		showScreenDetails.getBookedSeats().addAll(screenSeatUpdatedRequestDto.getBookedSeats());
+
+		for (String seat : screenSeatUpdatedRequestDto.getBookedSeats()) {
+			int seatNum = Integer.parseInt(seat);
+			if (seatNum < 0 && seatNum > showScreenDetails.getTotalSeatsPresent()) {
+				throw new InvalidSeatNumber(
+						"Invalid Seat Number Please Enter in range of 1 to screen capacity of seat");
+			}
+
+			if (!showScreenDetails.getBookedSeats().add(seat)) {
+				throw new SeatAlreadyBooked("Seat is Already occupied");
+			}
+
+			showScreenDetails.getBookedSeats().add(seat);
+
+		}
+
+		showScreenDetails.setTotalSeatsPresent(
+				showScreenDetails.getTotalSeatsPresent() - screenSeatUpdatedRequestDto.getBookedSeats().size());
+		showScreenDetailsRepository.saveAndFlush(showScreenDetails);
+
+		return "updated Seats in DB";
+	}
+
+	@Override
+	public List<MovieSearchResponseDto> getAllMoviesFromDB() {
+		return movieRepository.findAll().stream().map(movie -> convert(movie, new MovieSearchResponseDto()))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<TheaterRequestDto> getAllTheatersFromDB() {
+
+		return theaterRepository.findAll().stream().map(theater -> convert(theater, new TheaterRequestDto()))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<ShowScreenDetailsResponseDto> getShowScreenDetailsFromDB() {
+
+		return showScreenDetailsRepository.findAll().stream().map(ss -> convert(ss, new ShowScreenDetailsResponseDto()))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public Boolean validateGenreInDB(int genreId) {
+		return genreRepository.findAll().stream().anyMatch(g -> g.getGenreId() == genreId);
+	}
+
+	@SuppressWarnings("unchecked")
+	public <U, T> U convert(T obj1, U obj2) {
+		return (U) modelMapper.map(obj1, obj2.getClass());
+	}
+
+	@Override
+	public ShowScreenSeatUpdatedRequestDto getBookedSeatInfoShowScreenFromDB(int showScreenId) throws ServiceException {
+		ShowScreenDetails screenDetails=showScreenDetailsRepository.findById(showScreenId).orElseThrow(()->new ShowScreenDetailsIdInvalid("Invalid Show Screen Id"));
+		
+		ShowScreenSeatUpdatedRequestDto screenSeatUpdatedRequestDto=new ShowScreenSeatUpdatedRequestDto();
+		screenSeatUpdatedRequestDto.setShowScreenDetailId(showScreenId);
+		screenSeatUpdatedRequestDto.setBookedSeats(screenDetails.getBookedSeats());
+		return screenSeatUpdatedRequestDto ;
+	}
+}

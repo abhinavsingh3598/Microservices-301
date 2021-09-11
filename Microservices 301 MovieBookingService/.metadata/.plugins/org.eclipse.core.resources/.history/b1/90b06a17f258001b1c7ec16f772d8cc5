@@ -1,0 +1,16 @@
+package com.mindtree.searchService.services.serviceImpl;
+
+import org.springframework.stereotype.Service;
+
+import com.mindtree.searchService.services.ShowScreenSearchService;
+
+@Service
+public class ShowScreenSearchServiceImpl implements ShowScreenSearchService {
+
+	@Override
+	public boolean validateShowScreenDetailsFromDB(int showScreenDetailsId) {
+		return false;
+	}
+
+
+}

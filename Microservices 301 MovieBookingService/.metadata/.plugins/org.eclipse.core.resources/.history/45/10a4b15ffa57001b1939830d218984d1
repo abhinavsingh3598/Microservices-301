@@ -1,0 +1,9 @@
+package com.mindtree.adminService.dtos;
+
+public class MovieCastCrew {
+
+	public MovieCastCrew() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

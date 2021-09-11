@@ -1,0 +1,11 @@
+package com.mindtree.userService.services.serviceImpl;
+
+import com.mindtree.userService.services.UserService;
+
+public class UserServiceImpl implements UserService {
+
+	public UserServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

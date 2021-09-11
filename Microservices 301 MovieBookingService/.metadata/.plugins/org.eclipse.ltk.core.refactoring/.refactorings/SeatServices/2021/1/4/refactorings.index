@@ -1,0 +1,21 @@
+1610852242624	Rename package 'com.mindtree.searchService.controllers'
+1610852261539	Rename package 'com.mindtree.searchService.dtos'
+1610852276475	Rename package 'com.mindtree.searchService.exceptions'
+1610852287827	Rename package 'com.mindtree.searchService.services'
+1610852310982	Rename package 'com.mindtree.searchService.services.serviceImpl'
+1610852321422	Rename package 'com.mindtree.searchService.utilities'
+1610852346453	Rename type 'SearchServiceImpl'
+1610852360327	Rename type 'SearchService'
+1610852613949	Rename type 'SearchController'
+1610852661418	Rename field 'searchService'
+1610853162903	Delete element
+1610853376048	Delete element
+1610853379000	Delete element
+1610853411623	Rename type 'MovieDoesntExist'
+1611114286603	Delete element
+1611114437503	Rename method 'getMovieListByUser'
+1611114802320	Copy compilation unit
+1611144626897	Delete element
+1611144675437	Delete element
+1611148876491	Delete element
+1611164430519	Delete element

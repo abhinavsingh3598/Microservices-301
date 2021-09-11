@@ -1,0 +1,12 @@
+package com.mindtree.searchService.services.serviceImpl;
+
+import org.springframework.stereotype.Service;
+
+import com.mindtree.searchService.services.SearchService;
+
+@Service
+public class SearchServiceImpl implements SearchService {
+
+
+
+}

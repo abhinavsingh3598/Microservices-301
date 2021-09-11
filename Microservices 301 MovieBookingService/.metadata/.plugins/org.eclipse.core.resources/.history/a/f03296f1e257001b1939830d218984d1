@@ -1,0 +1,27 @@
+package com.mindtree.adminService.services;
+
+import com.mindtree.adminService.dtos.CastCrewRequestDto;
+import com.mindtree.adminService.dtos.GenreRequestDto;
+import com.mindtree.adminService.dtos.MovieRequestDto;
+import com.mindtree.adminService.dtos.ScreenRequestDto;
+import com.mindtree.adminService.dtos.ShowScreenDetailsRequestDto;
+import com.mindtree.adminService.dtos.ShowTimingsRequestDto;
+import com.mindtree.adminService.dtos.TheaterRequestDto;
+
+public interface AdminService {
+
+	GenreRequestDto addGenreToDB(GenreRequestDto genreRequestDto);
+
+	MovieRequestDto addMovieToDB(MovieRequestDto movieRequestDto);
+
+	CastCrewRequestDto addCastCrewToDB(CastCrewRequestDto castCrewRequestDto);
+
+	TheaterRequestDto addTheaterToDB(TheaterRequestDto theaterRequestDto);
+
+	ScreenRequestDto addScreenToDB(ScreenRequestDto screenRequestDto, int theaterId);
+
+	ShowScreenDetailsRequestDto addShowScreenDetailsDB(ShowScreenDetailsRequestDto showScreenDetailsRequestDto);
+
+	ShowTimingsRequestDto addShowTimingsDB(ShowTimingsRequestDto showTimingsRequestDto);
+
+}

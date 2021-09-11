@@ -1,0 +1,29 @@
+package com.mindtree.searchService.exceptions;
+
+public class MovieDoesntExist extends ServiceException {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public MovieDoesntExist() {
+	}
+
+	public MovieDoesntExist(String message) {
+		super(message);
+	}
+
+	public MovieDoesntExist(Throwable cause) {
+		super(cause);
+	}
+
+	public MovieDoesntExist(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public MovieDoesntExist(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+	}
+
+}

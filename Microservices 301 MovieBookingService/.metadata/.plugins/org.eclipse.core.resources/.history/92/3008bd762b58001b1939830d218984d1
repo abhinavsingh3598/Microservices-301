@@ -1,0 +1,11 @@
+package com.mindtree.bookingService.services.serviceImpl;
+
+import com.mindtree.bookingService.services.BookingService;
+
+public class BookingServiceImpl implements BookingService {
+
+	public BookingServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

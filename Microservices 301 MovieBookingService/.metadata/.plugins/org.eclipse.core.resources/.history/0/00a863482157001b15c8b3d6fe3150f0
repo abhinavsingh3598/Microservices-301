@@ -1,0 +1,15 @@
+package com.mindtree.bookingService.dtos;
+
+public class Snippet {
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE ,path = "/theater")
+		public ResponseEntity<ApiResponse> addTheater(@RequestBody TheaterRequestDto theaterRequestDto)
+		{
+			
+			ApiResponse apiResponse = new ApiResponse();
+			apiResponse.setBody(adminService.addTheaterToDB(theaterRequestDto));
+			apiResponse.setMessage("Cast Crew  Added Sucessfully !!");
+			apiResponse.setError(false);
+			apiResponse.setStatus(HttpStatus.CREATED);
+			return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
+		}}
+

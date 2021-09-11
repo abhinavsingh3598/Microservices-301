@@ -1,0 +1,9 @@
+package com.mindtree.searchService.dtos;
+
+public class MovieResponseDto {
+
+	public MovieResponseDto() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

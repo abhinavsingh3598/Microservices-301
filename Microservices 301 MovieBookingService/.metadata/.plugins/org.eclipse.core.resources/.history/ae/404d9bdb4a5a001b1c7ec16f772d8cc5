@@ -1,0 +1,9 @@
+package com.mindtree.adminService.dtos;
+
+public class ScreenResponseDto {
+
+	public ScreenResponseDto() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

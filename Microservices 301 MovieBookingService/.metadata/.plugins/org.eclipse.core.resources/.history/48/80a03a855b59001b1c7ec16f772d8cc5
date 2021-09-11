@@ -1,0 +1,18 @@
+package com.mindtree.searchService.services.serviceImpl;
+
+import org.springframework.stereotype.Service;
+
+import com.mindtree.searchService.services.UserSearchService;
+
+@Service
+public class UserSearchServiceImpl implements UserSearchService {
+
+	@Override
+	public Boolean validateUserFromDB(int userId) {
+		return false;
+	}
+
+	
+
+
+}

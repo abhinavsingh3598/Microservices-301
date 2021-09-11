@@ -1,0 +1,44 @@
+zuul:
+  prefix: /api
+  routes:
+    resource:
+    ADMIN-SERVICE:
+     path: /admin_service/**
+     service-id: admin-service 
+    USER-SERVICE: 
+     path: /user_service/**
+     service-id: user-service    
+    BOOKING-SERVICE: 
+     path: /booking_service/**
+     service-id: booking-service      
+    SEARCH-SERVICE: 
+     path: /search_service/**
+     service-id: search-service      
+    SEAT-SERVICE: 
+     path: /seat_service/**
+     service-id: seat-service      
+          
+server:
+  port: 8015
+  
+  
+spring:
+  application:
+    name: zuul-server
+    
+   
+
+eureka:
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8010/eureka/
+      
+      
+      
+     
+         

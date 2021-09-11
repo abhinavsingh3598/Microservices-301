@@ -1,0 +1,30 @@
+package com.mindtree.adminService.exceptions;
+
+public class ShowScreenDetailsIdInvalid extends ServiceException {
+
+	public ShowScreenDetailsIdInvalid() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public ShowScreenDetailsIdInvalid(String message) {
+		super(message);
+		// TODO Auto-generated constructor stub
+	}
+
+	public ShowScreenDetailsIdInvalid(Throwable cause) {
+		super(cause);
+		// TODO Auto-generated constructor stub
+	}
+
+	public ShowScreenDetailsIdInvalid(String message, Throwable cause) {
+		super(message, cause);
+		// TODO Auto-generated constructor stub
+	}
+
+	public ShowScreenDetailsIdInvalid(String message, Throwable cause, boolean enableSuppression,
+			boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+		// TODO Auto-generated constructor stub
+	}
+
+}

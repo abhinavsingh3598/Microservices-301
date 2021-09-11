@@ -1,0 +1,15 @@
+package com.mindtree.adminService.dtos;
+
+import com.mindtree.adminService.models.Address;
+
+import lombok.Data;
+
+@Data
+public class TheaterRequestDto {
+
+	private int theaterId;
+	private String theaterName;
+	private String restrictions;
+	private Address address;
+	
+}

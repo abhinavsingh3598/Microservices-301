@@ -1,0 +1,17 @@
+package com.mindtree.userService.services;
+
+import com.mindtree.userService.dtos.PreferenceRequestDto;
+import com.mindtree.userService.dtos.ReviewRequestDto;
+import com.mindtree.userService.dtos.UserRequestDto;
+
+public interface UserService {
+
+	UserRequestDto addUserToDB(UserRequestDto userRequestDto);
+
+	PreferenceRequestDto addPreferenceToDB(PreferenceRequestDto preferenceRequestDto);
+
+	ReviewRequestDto addReviewToDB(ReviewRequestDto reviewRequestDto, int userId);
+
+	String assignPreferenceToUser(int userId, int preferenceId);
+
+}

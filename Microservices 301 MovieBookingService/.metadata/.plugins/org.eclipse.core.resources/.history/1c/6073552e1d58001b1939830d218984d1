@@ -1,0 +1,7 @@
+package com.mindtree.adminService.exceptions;
+
+public class GenreIDInvalid extends ServiceException {
+
+	
+
+}

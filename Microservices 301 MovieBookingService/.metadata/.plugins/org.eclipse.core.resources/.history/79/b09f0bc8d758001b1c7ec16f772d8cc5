@@ -1,0 +1,25 @@
+package com.mindtree.adminService.dtos;
+
+import java.util.Set;
+
+import com.mindtree.adminService.models.CastCrew;
+import com.mindtree.adminService.models.Genre;
+import com.mindtree.adminService.models.ShowScreenDetails;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter@Getter
+public class MovieRequestDto {
+
+	
+	private int movieId;
+	private String movieName;
+	private String moviePoster;
+	private String movieDescription;
+	private String budget;
+	private String releaseDate;
+	private String interestingfacts;
+	private String language;
+
+}
